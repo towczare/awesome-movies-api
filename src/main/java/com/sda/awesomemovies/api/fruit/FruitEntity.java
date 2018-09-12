@@ -1,16 +1,16 @@
-package com.sda.awesomemovies.api.test;
+package com.sda.awesomemovies.api.fruit;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "test")
-public class TestEntity {
+@Table(name = "fruit")
+public class FruitEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
-    public TestEntity() {
+    public FruitEntity() {
     }
 
     public Integer getId() {
