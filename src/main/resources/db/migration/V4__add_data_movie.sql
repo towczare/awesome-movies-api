@@ -1,0 +1,1 @@
+insert into movie values (1, '300');

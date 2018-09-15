@@ -13,6 +13,10 @@ public class FruitEntity {
     public FruitEntity() {
     }
 
+    public FruitEntity(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
