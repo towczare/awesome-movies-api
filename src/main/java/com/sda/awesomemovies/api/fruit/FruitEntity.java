@@ -7,8 +7,13 @@ import javax.persistence.*;
 public class FruitEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Integer id;
     private String name;
+
+    public FruitEntity(String name) {
+        this.name = name;
+    }
 
     public FruitEntity() {
     }
