@@ -1,4 +1,4 @@
-package com.sda.awesomemovies.api.awesomemoviesapi;
+package com.sda.awesomemovies.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
