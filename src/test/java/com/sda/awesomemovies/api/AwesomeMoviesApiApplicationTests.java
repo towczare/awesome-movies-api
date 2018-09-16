@@ -1,4 +1,4 @@
-package com.sda.awesomemovies.api.awesomemoviesapi;
+package com.sda.awesomemovies.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,8 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AwesomeMoviesApiApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
-
+    @Test
+    public void contextLoads() {
+    }
 }
