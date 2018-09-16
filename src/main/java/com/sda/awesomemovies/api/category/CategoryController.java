@@ -1,22 +1,22 @@
 package com.sda.awesomemovies.api.category;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @RestController
 public class CategoryController {
 
-    @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @RequestMapping("/category")
-    public Iterable<CategoryModel> getCategoryData() {
+    public Iterable<CategoryModel> getCategories() {
         return categoryService.createList();
     }
 }
