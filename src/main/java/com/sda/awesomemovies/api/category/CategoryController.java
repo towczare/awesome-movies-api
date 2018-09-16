@@ -6,17 +6,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CategoryController {
-    @Autowired
-    private CategoryRepository categoryRepository;
 
-    public CategoryController(CategoryRepository categoryRepository) {
+    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
+
+    @Autowired
+    public CategoryController(CategoryRepository categoryRepository, CategoryService categoryService) {
         this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
     }
 
     @RequestMapping("/category")
-    public Iterable<CategoryEntity> getCategoryData() {
-        return categoryRepository.findAll();
+    public Iterable<CategoryModel> getCategoryData() {
+        return categoryService.createList();
     }
-
-
 }
+
+
