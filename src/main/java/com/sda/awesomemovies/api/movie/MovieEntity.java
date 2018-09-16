@@ -1,9 +1,16 @@
 package com.sda.awesomemovies.api.movie;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "movie")
+@NoArgsConstructor
+@Getter
+@Setter
 public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,26 +18,7 @@ public class MovieEntity {
     private Integer id;
     private String title;
 
-    public MovieEntity() {
-    }
-
     public MovieEntity(String title) {
-        this.title = title;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
         this.title = title;
     }
 }

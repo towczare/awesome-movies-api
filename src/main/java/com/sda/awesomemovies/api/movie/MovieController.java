@@ -12,7 +12,7 @@ public class MovieController {
         this.movieRepository = movieRepository;
     }
 
-    @RequestMapping("/movies")
+    @RequestMapping("/movie")
     public Iterable<MovieEntity> showData() {
         return movieRepository.findAll();
     }
