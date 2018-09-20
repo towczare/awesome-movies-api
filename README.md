@@ -1,6 +1,8 @@
 # Awesome Movies API
 
 Backend for Awesome Movies project.
+Only for teaching/learning purposes.
+Project has been created to teach my students how does real group project looks like.
 
 [Live demo](https://awesome-movies-server-api.herokuapp.com/)
 
