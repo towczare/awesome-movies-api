@@ -1,19 +1,27 @@
 package com.sda.awesomemovies.api.movie;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MovieController {
 
-    private MovieRepository movieRepository;
+    private MovieService movieService;
 
-    public MovieController(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
     }
 
-    @RequestMapping("/movie")
-    public Iterable<MovieEntity> showData() {
-        return movieRepository.findAll();
+    @RequestMapping("/movies")
+    public List<MovieModel> showMovies() {
+        return movieService.getAllMovies();
+    }
+
+    @RequestMapping("/movie/{id}")
+    public MovieModel getMovieById(@PathVariable Integer id) {
+        return movieService.getMovieById(id);
     }
 }
