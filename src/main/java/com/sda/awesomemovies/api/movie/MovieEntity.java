@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "movie")
@@ -27,5 +28,9 @@ public class MovieEntity {
 
     public MovieEntity(String title) {
         this.title = title;
+    }
+
+    public MovieModel toModel() {
+        return new MovieModel(id, title, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 }
