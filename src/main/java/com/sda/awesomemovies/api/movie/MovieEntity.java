@@ -20,17 +20,19 @@ public class MovieEntity {
     @Column(columnDefinition = "serial")
     private Integer id;
     private String title;
+    private String director;
 
     @ManyToMany
     @JoinTable(name = "movie_category",
             joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "category_ID"))
     private Set<CategoryEntity> categories;
 
-    public MovieEntity(String title) {
+    public MovieEntity(String title, String director) {
         this.title = title;
+        this.director = director;
     }
 
-    public MovieModel toModel() {
-        return new MovieModel(id, title, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+     MovieModel toModel() {
+        return new MovieModel(id, title, director, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 }

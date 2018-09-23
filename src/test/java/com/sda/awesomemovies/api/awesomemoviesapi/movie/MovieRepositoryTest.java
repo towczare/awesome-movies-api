@@ -17,7 +17,7 @@ public class MovieRepositoryTest {
 
     @Test
     public void addingNewMovies() {
-        movieRepository.save(new MovieEntity("Matrix"));
+        movieRepository.save(new MovieEntity("Matrix", ""));
         MovieEntity matrix = movieRepository.findByTitle("Matrix");
         String titleFromSql = matrix.getTitle();
 
