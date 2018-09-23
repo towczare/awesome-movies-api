@@ -16,12 +16,14 @@ public class MovieController {
     }
 
     @RequestMapping("/movies")
-    public List<MovieModel> showMovies() {
+    public List<MovieListModel> showMovies() {
         return movieService.getAllMovies();
     }
 
     @RequestMapping("/movie/{id}")
-    public MovieModel getMovieById(@PathVariable Integer id) {
+    public MovieModelDetails getMovieById(@PathVariable Integer id) {
         return movieService.getMovieById(id);
     }
+
+
 }
