@@ -31,8 +31,4 @@ public class RatingEntity {
     @JoinColumn(name = "movie_ID")
     private MovieEntity movieEntity;
 
-
-    RatingModel toModel() {
-        return new RatingModel(id, rate, author);
-    }
 }
