@@ -32,7 +32,11 @@ public class MovieEntity {
         this.director = director;
     }
 
-     MovieModel toModel() {
-        return new MovieModel(id, title, director, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+     MovieListModel toListModel() {
+        return new MovieListModel(id, title, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+    }
+
+    MovieModelDetails toDetailsModel(Double ratings) {
+        return new MovieModelDetails(id, title, director, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 }

@@ -8,4 +8,6 @@ public interface MovieRepository extends CrudRepository<MovieEntity, Integer> {
     MovieEntity findByTitle(String title);
 
     List<MovieEntity> findAll();
+
+
 }
