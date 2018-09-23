@@ -12,9 +12,10 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MovieModel {
+class MovieModel {
     private Integer id;
     private String title;
+    private String director;
     private Set<CategoryModel> categories;
 
 }
