@@ -27,9 +27,6 @@ public class MovieEntity {
             joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "category_ID"))
     private Set<CategoryEntity> categories;
 
-    @OneToMany(mappedBy = "movie", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Double ratings;
-
     public MovieEntity(String title, String director) {
         this.title = title;
         this.director = director;
