@@ -7,6 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -17,13 +21,11 @@ public class MovieRepositoryTest {
 
     @Test
     public void addingNewMovies() {
-        movieRepository.save(new MovieEntity("Matrix", "", "link"));
-        MovieEntity matrix = movieRepository.findByTitle("Matrix");
-        String titleFromSql = matrix.getTitle();
+       movieRepository.save(new MovieEntity("Matrix", "director", "link", new BigDecimal("8.2"), "describe", new Date(2000-12-12)));
+       MovieEntity matrix = movieRepository.findByTitle("Matrix");
+       String titleFromSql = matrix.getTitle();
 
         assertSame("Matrix", titleFromSql);
     }
-
-
 
 }
