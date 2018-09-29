@@ -16,7 +16,7 @@ class MovieModelDetails {
     private Integer id;
     private String title;
     private String director;
-    private String poster;
+    private String posterLink;
     private Double rating;
     private Set<CategoryModel> categories;
 }
