@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -17,6 +19,9 @@ class MovieModelDetails {
     private String title;
     private String director;
     private String posterLink;
+    private BigDecimal criticsRate;
+    private String overview;
+    private Date releaseDate;
     private Double rating;
     private Set<CategoryModel> categories;
 }
