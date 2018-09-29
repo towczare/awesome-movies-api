@@ -16,6 +16,7 @@ import java.util.Set;
 class MovieListModel {
     private Integer id;
     private String title;
+    private String posterLink;
     private Set<CategoryModel> categories;
 
 }

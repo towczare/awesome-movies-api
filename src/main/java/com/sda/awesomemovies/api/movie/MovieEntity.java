@@ -21,22 +21,24 @@ public class MovieEntity {
     private Integer id;
     private String title;
     private String director;
+    private String posterLink;
 
     @ManyToMany
     @JoinTable(name = "movie_category",
             joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "category_ID"))
     private Set<CategoryEntity> categories;
 
-    public MovieEntity(String title, String director) {
+    public MovieEntity(String title, String director, String posterLink) {
         this.title = title;
         this.director = director;
+        this.posterLink = posterLink;
     }
 
      MovieListModel toListModel() {
-        return new MovieListModel(id, title, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+        return new MovieListModel(id, title, posterLink, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 
     MovieModelDetails toDetailsModel(Double ratings) {
-        return new MovieModelDetails(id, title, director, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+        return new MovieModelDetails(id, title, director, posterLink, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 }
