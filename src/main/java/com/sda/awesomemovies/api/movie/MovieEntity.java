@@ -1,6 +1,7 @@
 package com.sda.awesomemovies.api.movie;
 
 import com.sda.awesomemovies.api.category.CategoryEntity;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +28,7 @@ public class MovieEntity {
     private String posterLink;
     private BigDecimal criticsRate;
     private String overview;
+    private String trailerUrl;
 
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
@@ -49,6 +52,6 @@ public class MovieEntity {
     }
 
     MovieModelDetails toDetailsModel(Double ratings) {
-        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()),trailerUrl);
     }
 }

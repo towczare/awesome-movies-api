@@ -19,4 +19,5 @@ class MovieListModel {
     private String posterLink;
     private Set<CategoryModel> categories;
 
+
 }
