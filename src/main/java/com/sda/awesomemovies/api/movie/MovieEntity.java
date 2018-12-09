@@ -1,7 +1,6 @@
 package com.sda.awesomemovies.api.movie;
 
 import com.sda.awesomemovies.api.category.CategoryEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
