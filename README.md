@@ -34,3 +34,6 @@ JDBC_DATABASE_URL=jdbc:postgresql://mydbserver:5432/dbname JDBC_DATABASE_USERNAM
 ```
 ### DB Migrations
 Application uses flyway project. You can read more about it here [https://flywaydb.org/](https://flywaydb.org/)
+
+###TEST
+BLAH BLAH
