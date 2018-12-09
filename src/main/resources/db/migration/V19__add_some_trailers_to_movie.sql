@@ -1,6 +1,6 @@
 UPDATE movie
 SET trailer_url = 'https://youtu.be/s7EdQ4FqbhY'
-WHERE Title = 'Pulp Fiction';
+WHERE title = 'Pulp Fiction';
 
 UPDATE movie
 SET trailer_url = 'https://youtu.be/AZwsKVL6JfM'

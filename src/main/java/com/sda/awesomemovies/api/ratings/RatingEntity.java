@@ -26,9 +26,7 @@ public class RatingEntity {
     @Max(5)
     private BigDecimal rate;
     private String author;
-
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "movie_ID")
     private MovieEntity movieEntity;
-
 }
