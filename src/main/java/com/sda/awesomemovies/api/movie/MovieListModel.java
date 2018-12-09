@@ -18,5 +18,4 @@ class MovieListModel {
     private String title;
     private String posterLink;
     private Set<CategoryModel> categories;
-
 }

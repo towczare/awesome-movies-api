@@ -24,4 +24,5 @@ class MovieModelDetails {
     private Date releaseDate;
     private Double rating;
     private Set<CategoryModel> categories;
+    private String trailerUrl;
 }

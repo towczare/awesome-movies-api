@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
-
     private final RatingRepository ratingRepository;
     private final MovieRepository movieRepository;
 
@@ -28,5 +27,4 @@ public class MovieService {
         MovieEntity movie = movieRepository.findOne(movieId);
         return movie.toDetailsModel(ratingRepository.getAverage(movieId));
     }
-
 }

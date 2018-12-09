@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 public class MovieController {
-
     private MovieService movieService;
 
     public MovieController(MovieService movieService) {
@@ -24,6 +23,4 @@ public class MovieController {
     public MovieModelDetails getMovieById(@PathVariable Integer id) {
         return movieService.getMovieById(id);
     }
-
-
 }

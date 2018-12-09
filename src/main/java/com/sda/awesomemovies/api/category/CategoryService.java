@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @Service
 public class CategoryService {
-
     private CategoryRepository categoryRepository;
 
     @Autowired
