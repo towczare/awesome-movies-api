@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 * Java 1.8
-hvuvhubuj
+hvuvhubujkoiko
 ### Installing
 ```
 ./mvnw clean install 
