@@ -1,6 +1,6 @@
 # Awesome Movies API
 
-Backend for Awesome Movies project.
+Backend for Awesome Movies project. push z intelij
 
 [Live demo](https://awesome-movies-server-api.herokuapp.com/)
 
