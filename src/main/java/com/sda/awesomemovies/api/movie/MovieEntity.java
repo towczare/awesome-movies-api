@@ -26,13 +26,12 @@ public class MovieEntity {
     private String posterLink;
     private BigDecimal criticsRate;
     private String overview;
-
+    private String trailerUrl;
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
-
     @ManyToMany
     @JoinTable(name = "movie_category",
-            joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "category_ID"))
+            joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "category_ID"))
     private Set<CategoryEntity> categories;
 
     public MovieEntity(String title, String director, String posterLink, BigDecimal criticsRate, String overview, Date releaseDate) {
@@ -44,11 +43,11 @@ public class MovieEntity {
         this.releaseDate = releaseDate;
     }
 
-     MovieListModel toListModel() {
+    MovieListModel toListModel() {
         return new MovieListModel(id, title, posterLink, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 
     MovieModelDetails toDetailsModel(Double ratings) {
-        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()), trailerUrl);
     }
 }
