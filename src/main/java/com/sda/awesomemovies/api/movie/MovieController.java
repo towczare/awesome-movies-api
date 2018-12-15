@@ -1,5 +1,6 @@
 package com.sda.awesomemovies.api.movie;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,4 +24,12 @@ public class MovieController {
     public MovieModelDetails getMovieById(@PathVariable Integer id) {
         return movieService.getMovieById(id);
     }
+
+
+    @RequestMapping("/moviespage")
+    public Page<MovieListModel> showMoviesPage() {
+        return movieService.getAllMoviesPage();
+    }
 }
+
+
