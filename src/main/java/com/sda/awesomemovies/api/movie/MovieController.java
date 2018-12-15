@@ -1,6 +1,7 @@
 package com.sda.awesomemovies.api.movie;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,9 +28,7 @@ public class MovieController {
 
 
     @RequestMapping("/moviespage")
-    public Page<MovieListModel> showMoviesPage() {
-        return movieService.getAllMoviesPage();
+    public Page<MovieListModel> showMoviesPage(Pageable pageable) {
+        return movieService.getAllMoviesPage(pageable);
     }
 }
-
-

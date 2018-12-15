@@ -22,8 +22,7 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    Page<MovieListModel> getAllMoviesPage() {
-        Pageable pageable = createPageRequest();
+    Page<MovieListModel> getAllMoviesPage(Pageable pageable) {
         Page<MovieEntity> movieEntities = movieRepository.findAll(pageable);
         return movieEntities.map(MovieEntity::toListModel);
     }
@@ -36,9 +35,5 @@ public class MovieService {
     MovieModelDetails getMovieById(Integer movieId) {
         MovieEntity movie = movieRepository.findOne(movieId);
         return movie.toDetailsModel(ratingRepository.getAverage(movieId));
-    }
-
-    private Pageable createPageRequest() {
-        return new PageRequest(1, 10, Sort.Direction.ASC, "title");
     }
 }
