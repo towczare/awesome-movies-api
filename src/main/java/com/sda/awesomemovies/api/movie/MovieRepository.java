@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface MovieRepository extends CrudRepository<MovieEntity, Integer> {
     MovieEntity findByTitle(String title);
-
     List<MovieEntity> findAll();
 
     @Query(value = "SELECT * FROM movie ORDER BY RANDOM() LIMIT ?1", nativeQuery = true)

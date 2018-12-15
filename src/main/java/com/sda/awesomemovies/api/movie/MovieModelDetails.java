@@ -1,5 +1,6 @@
 package com.sda.awesomemovies.api.movie;
 
+import com.sda.awesomemovies.api.actor.ActorDetailsModel;
 import com.sda.awesomemovies.api.category.CategoryModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,4 +25,6 @@ class MovieModelDetails {
     private Date releaseDate;
     private Double rating;
     private Set<CategoryModel> categories;
+    private String trailerUrl;
+    private Set<ActorDetailsModel> actors;
 }

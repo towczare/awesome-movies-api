@@ -1,4 +1,4 @@
-package com.sda.awesomemovies.api.category;
+package com.sda.awesomemovies.api.actor;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryModel {
+public class ActorListModel {
     private Integer id;
     private String name;
+    private String surname;
 }

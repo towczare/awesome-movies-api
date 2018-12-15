@@ -1,5 +1,6 @@
 package com.sda.awesomemovies.api.movie;
 
+import com.sda.awesomemovies.api.actor.ActorEntity;
 import com.sda.awesomemovies.api.category.CategoryEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,14 +27,18 @@ public class MovieEntity {
     private String posterLink;
     private BigDecimal criticsRate;
     private String overview;
-
+    private String trailerUrl;
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
-
     @ManyToMany
     @JoinTable(name = "movie_category",
-            joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "category_ID"))
+            joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "category_ID"))
     private Set<CategoryEntity> categories;
+
+    @ManyToMany
+    @JoinTable(name = "movie_actor",
+            joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
+    private Set<ActorEntity> actors;
 
     public MovieEntity(String title, String director, String posterLink, BigDecimal criticsRate, String overview, Date releaseDate) {
         this.title = title;
@@ -44,11 +49,13 @@ public class MovieEntity {
         this.releaseDate = releaseDate;
     }
 
-     MovieListModel toListModel() {
+    MovieListModel toListModel() {
         return new MovieListModel(id, title, posterLink, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 
     MovieModelDetails toDetailsModel(Double ratings) {
-        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings,
+                categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()), trailerUrl,
+                actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()));
     }
 }
