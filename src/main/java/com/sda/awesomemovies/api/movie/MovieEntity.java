@@ -39,6 +39,8 @@ public class MovieEntity {
     @JoinTable(name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private Set<ActorEntity> actors;
+    private Integer budget;
+    private Integer boxoffice;
 
     public MovieEntity(String title, String director, String posterLink, BigDecimal criticsRate, String overview, Date releaseDate) {
         this.title = title;
@@ -56,6 +58,6 @@ public class MovieEntity {
     MovieModelDetails toDetailsModel(Double ratings) {
         return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings,
                 categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()), trailerUrl,
-                actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()));
+                actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()), budget, boxoffice);
     }
 }
