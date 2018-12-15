@@ -2,7 +2,6 @@ package com.sda.awesomemovies.api.movie;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,8 +32,8 @@ public class MovieController {
         return movieService.getAllMoviesPage(pageable);
     }
 
-    @RequestMapping("/random{nr}")
-    public List<MovieListModel> showXRandomMovies(@PathVariable Integer nr){
-        return movieService.getXRandomMovies(nr);
+    @RequestMapping("/movies/random/{size}")
+    public List<MovieListModel> getRandomMovies(@PathVariable Integer size){
+        return movieService.getRandomMovies(size);
     }
 }
