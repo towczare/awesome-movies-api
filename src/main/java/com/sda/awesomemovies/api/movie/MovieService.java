@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
-
     private final RatingRepository ratingRepository;
     private final MovieRepository movieRepository;
 
@@ -29,4 +28,8 @@ public class MovieService {
         return movie.toDetailsModel(ratingRepository.getAverage(movieId));
     }
 
+    List<MovieListModel> getXRandomMovies(Integer numberOfMovies){
+        return movieRepository.findMovieEntities(numberOfMovies)
+                .stream().map(MovieEntity::toListModel).collect(Collectors.toList());
+    }
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 @RestController
 public class MovieController {
-
     private MovieService movieService;
 
     public MovieController(MovieService movieService) {
@@ -25,5 +24,8 @@ public class MovieController {
         return movieService.getMovieById(id);
     }
 
-
+    @RequestMapping("/random{nr}")
+    public List<MovieListModel> showXRandomMovies(@PathVariable Integer nr){
+        return movieService.getXRandomMovies(nr);
+    }
 }
