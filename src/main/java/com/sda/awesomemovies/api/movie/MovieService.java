@@ -2,6 +2,10 @@ package com.sda.awesomemovies.api.movie;
 
 import com.sda.awesomemovies.api.ratings.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +20,11 @@ public class MovieService {
     public MovieService(RatingRepository ratingRepository, MovieRepository movieRepository) {
         this.ratingRepository = ratingRepository;
         this.movieRepository = movieRepository;
+    }
+
+    Page<MovieListModel> getAllMoviesPage(Pageable pageable) {
+        Page<MovieEntity> movieEntities = movieRepository.findAll(pageable);
+        return movieEntities.map(MovieEntity::toListModel);
     }
 
     List<MovieListModel> getAllMovies() {
