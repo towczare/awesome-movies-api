@@ -1,6 +1,8 @@
 # Awesome Movies API
 
-Backend for Awesome Movies project. push z intelij
+[![CodeFactor](https://www.codefactor.io/repository/github/towczare/awesome-movies-api/badge)](https://www.codefactor.io/repository/github/towczare/awesome-movies-api)
+
+Backend for Awesome Movies project.
 
 [Live demo](https://awesome-movies-server-api.herokuapp.com/)
 
