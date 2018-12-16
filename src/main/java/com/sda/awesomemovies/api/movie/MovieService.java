@@ -36,4 +36,9 @@ public class MovieService {
         MovieEntity movie = movieRepository.findOne(movieId);
         return movie.toDetailsModel(ratingRepository.getAverage(movieId));
     }
+
+    List<MovieListModel> getRandomMovies(Integer numberOfMovies){
+        return movieRepository.findMovieEntities(numberOfMovies)
+                .stream().map(MovieEntity::toListModel).collect(Collectors.toList());
+    }
 }
