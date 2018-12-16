@@ -27,4 +27,6 @@ class MovieModelDetails {
     private Set<CategoryModel> categories;
     private String trailerUrl;
     private Set<ActorDetailsModel> actors;
+    private Integer budget;
+    private Integer boxoffice;
 }
