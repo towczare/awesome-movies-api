@@ -1,8 +1,6 @@
-ALTER TABLE movie
-  ADD budget INTEGER (100000);
+ALTER TABLE movie ADD budget INTEGER;
 
-ALTER TABLE movie
-  ADD boxoffice INTEGER (100000);
+ALTER TABLE movie ADD boxoffice INTEGER;
 
 UPDATE movie
 SET budget = 8
