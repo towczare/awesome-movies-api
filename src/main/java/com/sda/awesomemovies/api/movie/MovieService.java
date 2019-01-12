@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,11 +31,18 @@ public class MovieService {
         return movies.stream().map(MovieEntity::toListModel).collect(Collectors.toList());
     }
 
+    Boolean doesMovieExistById(Integer movieId){
+       if(movieRepository.findOne(movieId) != null){
+           return true;
+       }
+       return false;
+    }
     MovieModelDetails getMovieById(Integer movieId) {
         MovieEntity movie = movieRepository.findOne(movieId);
-
-
-           return movie.toDetailsModel(ratingRepository.getAverage(movieId));
+        if (movie != null) {
+            return movie.toDetailsModel(ratingRepository.getAverage(movieId));
+        }
+        return null;
     }
 
     List<MovieListModel> getRandomMovies(Integer numberOfMovies) {
