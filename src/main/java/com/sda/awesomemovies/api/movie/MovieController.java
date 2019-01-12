@@ -37,7 +37,7 @@ public class MovieController {
     }
 
     @RequestMapping("/movies/random/{size}")
-    public List<MovieListModel> getRandomMovies(@PathVariable Integer size) {
+    public List<MovieListModel> getRandomMovies(@PathVariable Integer size){
         return movieService.getRandomMovies(size);
     }
 }
