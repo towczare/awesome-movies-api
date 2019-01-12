@@ -12,11 +12,9 @@ import java.util.List;
 @RestController
 public class MovieController {
     private MovieService movieService;
-    private MovieRepository movieRepository;
 
-    public MovieController(MovieService movieService, MovieRepository movieRepository) {
+    public MovieController(MovieService movieService) {
         this.movieService = movieService;
-        this.movieRepository = movieRepository;
     }
 
     @RequestMapping("/movies")
@@ -26,10 +24,10 @@ public class MovieController {
 
     @RequestMapping("/movie/{id}")
     public ResponseEntity<MovieModelDetails> getMovieById(@PathVariable Integer id) {
-        if (movieRepository.findOne(id) == null) {
-            return ResponseEntity.noContent().build();
-        } else {
+        if (movieService.doesMovieExistById(id)) {
             return ResponseEntity.ok(movieService.getMovieById(id));
+        } else {
+            return ResponseEntity.noContent().build();
         }
     }
 

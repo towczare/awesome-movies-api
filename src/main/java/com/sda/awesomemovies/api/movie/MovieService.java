@@ -32,6 +32,12 @@ public class MovieService {
         return movies.stream().map(MovieEntity::toListModel).collect(Collectors.toList());
     }
 
+    Boolean doesMovieExistById(Integer movieId){
+       if(movieRepository.findOne(movieId) != null){
+           return true;
+       }
+       return false;
+    }
     MovieModelDetails getMovieById(Integer movieId) {
         MovieEntity movie = movieRepository.findOne(movieId);
          return movie.toDetailsModel(ratingRepository.getAverage(movieId));
