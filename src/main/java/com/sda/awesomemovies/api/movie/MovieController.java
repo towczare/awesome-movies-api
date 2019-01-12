@@ -5,9 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MovieController {
@@ -15,11 +17,6 @@ public class MovieController {
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
-    }
-
-    @RequestMapping("/movies")
-    public List<MovieListModel> showMovies() {
-        return movieService.getAllMovies();
     }
 
     @RequestMapping("/movie/{id}")
@@ -32,13 +29,22 @@ public class MovieController {
         }
     }
 
-    @RequestMapping(value = "/movies", params = "page")
-    public Page<MovieListModel> showMoviesPage(Pageable pageable) {
-        return movieService.getAllMoviesPage(pageable);
-    }
-
     @RequestMapping("/movies/random/{size}")
     public List<MovieListModel> getRandomMovies(@PathVariable Integer size) {
         return movieService.getRandomMovies(size);
     }
+
+    @RequestMapping(value = "/movies")
+    public Page<MovieListModel> getMoviesFilteredByTitle(@RequestParam(value = "title") Optional<String> title,
+                                                         @RequestParam(value = "actor") Optional<String> actor,
+                                                         @RequestParam(value = "category") Optional<String> category,
+                                                         Pageable pageable) {
+        MovieCriteria movieCriteria = new MovieCriteria();
+        title.ifPresent(movieCriteria::setTitle);
+        actor.ifPresent(movieCriteria::setActor);
+        category.ifPresent(movieCriteria::setCategory);
+        return movieService.getMoviesByCriteria(movieCriteria, pageable);
+    }
+
+
 }
