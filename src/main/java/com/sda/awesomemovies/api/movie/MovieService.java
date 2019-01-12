@@ -3,9 +3,7 @@ package com.sda.awesomemovies.api.movie;
 import com.sda.awesomemovies.api.ratings.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,8 +35,16 @@ public class MovieService {
         return movie.toDetailsModel(ratingRepository.getAverage(movieId));
     }
 
-    List<MovieListModel> getRandomMovies(Integer numberOfMovies){
+    List<MovieListModel> getRandomMovies(Integer numberOfMovies) {
         return movieRepository.findMovieEntities(numberOfMovies)
                 .stream().map(MovieEntity::toListModel).collect(Collectors.toList());
+    }
+
+    void rateMovie(Integer movieId, String rate) {
+        if (rate.equals("up")) {
+            movieRepository.rateMovieUp(movieId);
+        } else if (rate.equals("down")){
+            movieRepository.rateMovieDown(movieId);
+        }
     }
 }

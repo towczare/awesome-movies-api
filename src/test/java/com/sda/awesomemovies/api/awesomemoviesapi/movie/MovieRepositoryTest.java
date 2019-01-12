@@ -21,7 +21,7 @@ public class MovieRepositoryTest {
 
     @Test
     public void addingNewMovies() {
-       movieRepository.save(new MovieEntity("Matrix", "director", "link", new BigDecimal("8.2"), "describe", new Date(2000-12-12)));
+       movieRepository.save(new MovieEntity("Matrix", "director", "link", new BigDecimal("8.2"), "describe", new Date(2000-12-12),0,0));
        MovieEntity matrix = movieRepository.findByTitle("Matrix");
        String titleFromSql = matrix.getTitle();
 

@@ -30,9 +30,6 @@ public class MovieEntity {
     private String trailerUrl;
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
-    private Integer thumbUp;
-    private Integer thumbDown;
-
     @ManyToMany
     @JoinTable(name = "movie_category",
             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "category_ID"))
@@ -44,8 +41,13 @@ public class MovieEntity {
     private Set<ActorEntity> actors;
     private Integer budget;
     private Integer boxoffice;
+    @Column(name="thumb_up")
+    private Integer thumbUp;
+    @Column(name="thumb_down")
+    private Integer thumbDown;
 
-    public MovieEntity(String title, String director, String posterLink, BigDecimal criticsRate, String overview, Date releaseDate) {
+    public MovieEntity(String title, String director, String posterLink,
+                       BigDecimal criticsRate, String overview, Date releaseDate, Integer thumbUp, Integer thumbDown) {
         this.title = title;
         this.director = director;
         this.posterLink = posterLink;
