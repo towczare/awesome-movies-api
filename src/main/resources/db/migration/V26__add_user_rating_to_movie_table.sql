@@ -1,0 +1,5 @@
+ALTER TABLE movie
+  ADD COLUMN thumb_up INTEGER ;
+
+ALTER TABLE movie
+  ADD COLUMN thumb_down INTEGER ;

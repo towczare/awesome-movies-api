@@ -1,6 +1,8 @@
 # Awesome Movies API
 
-Backend for Awesome Movies project. push z intelij
+[![CodeFactor](https://www.codefactor.io/repository/github/towczare/awesome-movies-api/badge)](https://www.codefactor.io/repository/github/towczare/awesome-movies-api)
+
+Backend for Awesome Movies project.
 
 [Live demo](https://awesome-movies-server-api.herokuapp.com/)
 
@@ -9,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 * Java 1.8
-hvuvhubujkoiko
+
 ### Installing
 ```
 ./mvnw clean install 
