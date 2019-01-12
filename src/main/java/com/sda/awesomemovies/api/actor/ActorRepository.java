@@ -8,4 +8,5 @@ public interface ActorRepository extends CrudRepository<ActorEntity, Long> {
     List<ActorEntity> findAll();
 
     ActorEntity findById(Integer id);
+    ActorEntity findBySurname(String Surname);
 }

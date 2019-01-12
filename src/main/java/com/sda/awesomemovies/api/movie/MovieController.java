@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MovieController {
@@ -15,23 +16,14 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @RequestMapping("/movies")
-    public List<MovieListModel> showMovies() {
-        return movieService.getAllMovies();
-    }
-
     @RequestMapping("/movie/{id}")
     public ResponseEntity<MovieModelDetails> getMovieById(@PathVariable Integer id) {
-        if (movieService.getMovieById(id) == null) {
-            return ResponseEntity.noContent().build();
+        MovieModelDetails movieById = movieService.getMovieById(id);
+        if (movieById != null) {
+            return ResponseEntity.ok(movieById);
         } else {
-            return ResponseEntity.ok(movieService.getMovieById(id));
+            return ResponseEntity.noContent().build();
         }
-    }
-
-    @RequestMapping(value = "/movies", params = "page")
-    public Page<MovieListModel> showMoviesPage(Pageable pageable) {
-        return movieService.getAllMoviesPage(pageable);
     }
 
     @RequestMapping("/movies/random/{size}")
@@ -39,9 +31,22 @@ public class MovieController {
         return movieService.getRandomMovies(size);
     }
 
+
     @PostMapping(value = "/movie/{id}/rate")
     public MovieModelDetails rateMovie(@RequestBody String rate, @PathVariable Integer id){
         movieService.rateMovie(id, rate);
         return movieService.getMovieById(id);
+    }
+
+    @RequestMapping(value = "/movies")
+    public Page<MovieListModel> getMoviesFilteredByTitle(@RequestParam(value = "title") Optional<String> title,
+                                                         @RequestParam(value = "actor") Optional<String> actor,
+                                                         @RequestParam(value = "category") Optional<String> category,
+                                                         Pageable pageable) {
+        MovieCriteria movieCriteria = new MovieCriteria();
+        title.ifPresent(movieCriteria::setTitle);
+        actor.ifPresent(movieCriteria::setActor);
+        category.ifPresent(movieCriteria::setCategory);
+        return movieService.getMoviesByCriteria(movieCriteria, pageable);
     }
 }
