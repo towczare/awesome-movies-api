@@ -24,10 +24,11 @@ public class MovieController {
 
     @RequestMapping("/movie/{id}")
     public ResponseEntity<MovieModelDetails> getMovieById(@PathVariable Integer id) {
-        if (movieService.getMovieById(id) == null) {
-            return ResponseEntity.noContent().build();
+        MovieModelDetails movieById = movieService.getMovieById(id);
+        if (movieById != null) {
+            return ResponseEntity.ok(movieById);
         } else {
-            return ResponseEntity.ok(movieService.getMovieById(id));
+            return ResponseEntity.noContent().build();
         }
     }
 
