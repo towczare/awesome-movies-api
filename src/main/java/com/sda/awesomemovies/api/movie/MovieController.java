@@ -12,9 +12,11 @@ import java.util.List;
 @RestController
 public class MovieController {
     private MovieService movieService;
+    private MovieRepository movieRepository;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, MovieRepository movieRepository) {
         this.movieService = movieService;
+        this.movieRepository = movieRepository;
     }
 
     @RequestMapping("/movies")
@@ -24,7 +26,7 @@ public class MovieController {
 
     @RequestMapping("/movie/{id}")
     public ResponseEntity<MovieModelDetails> getMovieById(@PathVariable Integer id) {
-        if (movieService.getMovieById(id) == null) {
+        if (movieRepository.findOne(id) == null) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.ok(movieService.getMovieById(id));
