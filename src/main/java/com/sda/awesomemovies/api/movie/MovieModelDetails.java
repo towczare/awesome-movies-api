@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
 class MovieModelDetails {
     private Integer id;
     private String title;
