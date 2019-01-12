@@ -30,6 +30,9 @@ public class MovieEntity {
     private String trailerUrl;
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
+    private Integer thumbUp;
+    private Integer thumbDown;
+
     @ManyToMany
     @JoinTable(name = "movie_category",
             joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "category_ID"))
@@ -56,8 +59,22 @@ public class MovieEntity {
     }
 
     MovieModelDetails toDetailsModel(Double ratings) {
-        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings,
-                categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()), trailerUrl,
-                actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()), budget, boxoffice);
+        return MovieModelDetails.builder()
+                .id(id)
+                .title(title)
+                .director(director)
+                .posterLink(posterLink)
+                .criticsRate(criticsRate)
+                .overview(overview)
+                .releaseDate(releaseDate)
+                .rating(ratings)
+                .categories(categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()))
+                .trailerUrl(trailerUrl)
+                .actors(actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()))
+                .thumbDown(thumbDown)
+                .thumbUp(thumbUp)
+                .budget(budget)
+                .boxoffice(boxoffice)
+                .build();
     }
 }

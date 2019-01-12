@@ -2,10 +2,7 @@ package com.sda.awesomemovies.api.movie;
 
 import com.sda.awesomemovies.api.actor.ActorDetailsModel;
 import com.sda.awesomemovies.api.category.CategoryModel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,8 +10,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 class MovieModelDetails {
     private Integer id;
     private String title;
@@ -29,4 +26,6 @@ class MovieModelDetails {
     private Set<ActorDetailsModel> actors;
     private Integer budget;
     private Integer boxoffice;
+    private Integer thumbUp;
+    private Integer thumbDown;
 }
