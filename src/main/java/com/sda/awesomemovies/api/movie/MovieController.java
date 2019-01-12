@@ -2,6 +2,7 @@ package com.sda.awesomemovies.api.movie;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,13 @@ public class MovieController {
     }
 
     @RequestMapping("/movie/{id}")
-    public MovieModelDetails getMovieById(@PathVariable Integer id) {
-        return movieService.getMovieById(id);
+    public ResponseEntity<MovieModelDetails> getMovieById(@PathVariable Integer id) {
+        MovieModelDetails movieById = movieService.getMovieById(id);
+        if (movieById != null) {
+            return ResponseEntity.ok(movieById);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 
     @RequestMapping("/movies/random/{size}")
