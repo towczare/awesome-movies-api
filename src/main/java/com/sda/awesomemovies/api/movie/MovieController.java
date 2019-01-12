@@ -24,8 +24,9 @@ public class MovieController {
 
     @RequestMapping("/movie/{id}")
     public ResponseEntity<MovieModelDetails> getMovieById(@PathVariable Integer id) {
-        if (movieService.doesMovieExistById(id)) {
-            return ResponseEntity.ok(movieService.getMovieById(id));
+        MovieModelDetails movieById = movieService.getMovieById(id);
+        if (movieById != null) {
+            return ResponseEntity.ok(movieById);
         } else {
             return ResponseEntity.noContent().build();
         }
@@ -37,7 +38,7 @@ public class MovieController {
     }
 
     @RequestMapping("/movies/random/{size}")
-    public List<MovieListModel> getRandomMovies(@PathVariable Integer size){
+    public List<MovieListModel> getRandomMovies(@PathVariable Integer size) {
         return movieService.getRandomMovies(size);
     }
 }
