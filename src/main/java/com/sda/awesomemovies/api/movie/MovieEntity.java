@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,6 +42,8 @@ public class MovieEntity {
     @JoinTable(name = "movie_actor",
             joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private Set<ActorEntity> actors;
+    private Integer budget;
+    private Integer boxoffice;
 
     public MovieEntity(String title, String director, String posterLink, BigDecimal criticsRate, String overview, Date releaseDate) {
         this.title = title;
@@ -57,11 +58,23 @@ public class MovieEntity {
         return new MovieListModel(id, title, posterLink, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
     }
 
-
-
     MovieModelDetails toDetailsModel(Double ratings) {
-        return new MovieModelDetails(id, title, director, posterLink, criticsRate, overview, releaseDate, ratings,
-                categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()), trailerUrl,
-                actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()),10, 12);
+        return MovieModelDetails.builder()
+                .id(id)
+                .title(title)
+                .director(director)
+                .posterLink(posterLink)
+                .criticsRate(criticsRate)
+                .overview(overview)
+                .releaseDate(releaseDate)
+                .rating(ratings)
+                .categories(categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()))
+                .trailerUrl(trailerUrl)
+                .actors(actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()))
+                .thumbDown(thumbDown)
+                .thumbUp(thumbUp)
+                .budget(budget)
+                .boxoffice(boxoffice)
+                .build();
     }
 }
