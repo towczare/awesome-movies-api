@@ -1,5 +1,7 @@
 package com.sda.awesomemovies.api.movie;
 
+import com.sda.awesomemovies.api.actor.ActorDetailsModel;
+import com.sda.awesomemovies.api.actor.ActorEntity;
 import com.sda.awesomemovies.api.category.CategoryModel;
 import com.sda.awesomemovies.api.ratings.RatingEntity;
 import lombok.AllArgsConstructor;
@@ -18,4 +20,5 @@ class MovieListModel {
     private String title;
     private String posterLink;
     private Set<CategoryModel> categories;
+    private Set<ActorDetailsModel> actors;
 }

@@ -52,7 +52,9 @@ public class MovieEntity {
     }
 
     MovieListModel toListModel() {
-        return new MovieListModel(id, title, posterLink, categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()));
+        return new MovieListModel(id, title, posterLink,
+                categories.stream().map(CategoryEntity::toModel).collect(Collectors.toSet()),
+                actors.stream().map(ActorEntity::toDetailsModel).collect(Collectors.toSet()));
     }
 
     MovieModelDetails toDetailsModel(Double ratings) {
