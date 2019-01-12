@@ -21,7 +21,8 @@ public class ActorEntity {
     private String name;
     private String surname;
 
-    ActorListModel toListModel() {
+
+    public ActorListModel toListModel() {
         return new ActorListModel(id, name, surname);
     }
 
