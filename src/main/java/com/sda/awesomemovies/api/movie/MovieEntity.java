@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,7 +30,9 @@ public class MovieEntity {
     private String trailerUrl;
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
+    @Column (name="thumb_up")
     private Integer thumbUp;
+    @Column (name="thumb_down")
     private Integer thumbDown;
     @ManyToMany
     @JoinTable(name = "movie_category",
@@ -44,7 +45,8 @@ public class MovieEntity {
     private Integer budget;
     private Integer boxoffice;
 
-    public MovieEntity(String title, String director, String posterLink, BigDecimal criticsRate, String overview, Date releaseDate) {
+    public MovieEntity(String title, String director, String posterLink,
+                       BigDecimal criticsRate, String overview, Date releaseDate, Integer thumbUp, Integer thumbDown) {
         this.title = title;
         this.director = director;
         this.posterLink = posterLink;
