@@ -31,9 +31,12 @@ public class MovieService {
             booleanExpression = booleanExpression.and(qMovieEntity.title.containsIgnoreCase(criteria.getTitle()));
         }
         if (criteria.getActor() != null) {
-            booleanExpression = booleanExpression.and(
-                    (qMovieEntity.actors.any().name.containsIgnoreCase(criteria.getActor())
-                            .or((qMovieEntity.actors.any().surname.containsIgnoreCase(criteria.getActor())))));
+            String[] actor = criteria.getActor().split(" ");
+            for (String string : actor) {
+                booleanExpression = booleanExpression.and(
+                        (qMovieEntity.actors.any().name.containsIgnoreCase(string)
+                                .or((qMovieEntity.actors.any().surname.containsIgnoreCase(string)))));
+            }
         }
         if (criteria.getCategory() != null) {
             booleanExpression = booleanExpression.and(qMovieEntity.categories.any().name.containsIgnoreCase(criteria.getCategory()));
