@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,24 +26,21 @@ public class MovieService {
 
     Page<MovieListModel> getMoviesByCriteria(MovieCriteria criteria, Pageable pageable) {
         BooleanExpression booleanExpression = Expressions.asBoolean(true).isTrue();
+
         if (criteria.getTitle() != null) {
             booleanExpression = booleanExpression.and(qMovieEntity.title.containsIgnoreCase(criteria.getTitle()));
         }
         if (criteria.getActor() != null) {
-            booleanExpression = booleanExpression.and(qMovieEntity.actors.any().surname.likeIgnoreCase(criteria.getActor()));
+            booleanExpression = booleanExpression.and(
+                    (qMovieEntity.actors.any().name.containsIgnoreCase(criteria.getActor())
+                            .or((qMovieEntity.actors.any().surname.containsIgnoreCase(criteria.getActor())))));
         }
         if (criteria.getCategory() != null) {
-            booleanExpression = booleanExpression.and(qMovieEntity.categories.any().name.likeIgnoreCase(criteria.getCategory()));
+            booleanExpression = booleanExpression.and(qMovieEntity.categories.any().name.containsIgnoreCase(criteria.getCategory()));
         }
         return movieRepository.findAll(booleanExpression, pageable).map(MovieEntity::toListModel);
     }
 
-    Boolean doesMovieExistById(Integer movieId){
-       if(movieRepository.findOne(movieId) != null){
-           return true;
-       }
-       return false;
-    }
     MovieModelDetails getMovieById(Integer movieId) {
         MovieEntity movie = movieRepository.findOne(movieId);
         if (movie != null) {
