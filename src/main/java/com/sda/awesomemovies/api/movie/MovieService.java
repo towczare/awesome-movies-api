@@ -58,10 +58,10 @@ public class MovieService {
                 .stream().map(MovieEntity::toListModel).collect(Collectors.toList());
     }
 
-    void rateMovie(Integer movieId, String rate) {
-        if (rate.equals("up")) {
+    void rateMovie(Integer movieId, MovieRate rate) {
+        if (rate.equals(MovieRate.UP)) {
             movieRepository.rateMovieUp(movieId);
-        } else if (rate.equals("down")){
+        } else if (rate.equals(MovieRate.DOWN)){
             movieRepository.rateMovieDown(movieId);
         }
     }

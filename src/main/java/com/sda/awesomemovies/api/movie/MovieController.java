@@ -33,7 +33,7 @@ public class MovieController {
 
 
     @PostMapping(value = "/movie/{id}/rate")
-    public MovieModelDetails rateMovie(@RequestBody String rate, @PathVariable Integer id){
+    public MovieModelDetails rateMovie(@RequestBody MovieRate rate, @PathVariable Integer id){
         movieService.rateMovie(id, rate);
         return movieService.getMovieById(id);
     }
