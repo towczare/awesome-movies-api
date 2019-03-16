@@ -26,6 +26,11 @@ public class MovieController {
         }
     }
 
+    @RequestMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("Hello SDA 12!");
+    }
+
     @RequestMapping("/movies/random/{size}")
     public List<MovieListModel> getRandomMovies(@PathVariable Integer size) {
         return movieService.getRandomMovies(size);
